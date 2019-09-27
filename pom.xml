@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.toolisticon.annotationconstraints</groupId>
@@ -8,7 +9,7 @@
     <packaging>pom</packaging>
 
     <name>annotationconstraints</name>
-    <description>Please refer to https://github.com/toolisticon/annotation-constraints/description>
+    <description>Please refer to https://github.com/toolisticon/annotation-constraints</description>
     <url>https://github.com/toolisticon/annotation-constraints</url>
 
     <parent>
@@ -297,7 +298,8 @@
                                 <id>validate</id>
                                 <phase>validate</phase>
                                 <configuration>
-                                    <configLocation>${session.executionRootDirectory}/config/sun_checks.xml</configLocation>
+                                    <configLocation>${session.executionRootDirectory}/config/sun_checks.xml
+                                    </configLocation>
                                     <encoding>UTF-8</encoding>
                                     <consoleOutput>true</consoleOutput>
                                     <failOnViolation>true</failOnViolation>
@@ -436,10 +438,10 @@
     </dependencyManagement>
 
 
-  <modules>
-    <module>annotationconstraints-api</module>
-    <module>annotationconstraints-processor</module>
-    <module>annotationconstraints-example</module>
-    <!-- <module>annotationconstraints-integrationTest</module> -->
-  </modules>
+    <modules>
+        <module>annotationconstraints-api</module>
+        <module>annotationconstraints-processor</module>
+        <module>annotationconstraints-example</module>
+        <!-- <module>annotationconstraints-integrationTest</module> -->
+    </modules>
 </project>
