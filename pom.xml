@@ -8,9 +8,8 @@
     <packaging>pom</packaging>
 
     <name>annotationconstraints</name>
-    <!-- TODO: UPDATE URLS -->
-    <description>Please refer to https://github.com/toolisticon/bean-builder</description>
-    <url>https://github.com/holisticon/bean-builder</url>
+    <description>Please refer to https://github.com/toolisticon/annotation-constraints/description>
+    <url>https://github.com/toolisticon/annotation-constraints</url>
 
     <parent>
         <groupId>io.toolisticon.maven</groupId>
@@ -18,24 +17,19 @@
         <version>0.7.0</version>
     </parent>
 
-    <!-- TODO: Add Organisation -->
     <organization>
-        <name/>
-        <url/>
+        <name>holisticon AG</name>
+        <url>http://www.holisticon.de</url>
     </organization>
-    <!-- TODO:  Add developers-->
     <developers>
-        <!--
         <developer>
-            <name></name>
-            <email></email>
-            <organization></organization>
-            <organizationUrl></organizationUrl>
+            <name>Tobias Stamann</name>
+            <email>tobias.stamann@holisticon.de</email>
+            <organization>holisticon AG</organization>
+            <organizationUrl>http://www.holisticon.de</organizationUrl>
         </developer>
-        -->
     </developers>
 
-    <!-- TODO: Update License -->
     <licenses>
         <license>
             <name>MIT License</name>
@@ -51,17 +45,15 @@
         <maven>3.0.4</maven>
     </prerequisites>
 
-    <!-- TODO: Update issue management -->
     <issueManagement>
-        <url>https://github.com/toolisticon/bean-builder/issues</url>
+        <url>https://github.com/toolisticon/annotation-constraints/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
-    <!-- TODO: Configure SCM -->
     <scm>
-        <connection>scm:git:git@github.com:toolisticon/bean-builder.git</connection>
-        <developerConnection>scm:git:git@github.com:toolisticon/bean-builder.git</developerConnection>
-        <url>git@github.com:toolisticon/bean-builder.git</url>
+        <connection>scm:git:git@github.com:toolisticon/annotation-constraints.git</connection>
+        <developerConnection>scm:git:git@github.com:toolisticon/annotation-constraints.git</developerConnection>
+        <url>git@github.com:toolisticon/annotation-constraints.git</url>
         <tag>HEAD</tag>
     </scm>
 
