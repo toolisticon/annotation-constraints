@@ -1,7 +1,7 @@
 # ${rootArtifactId} Annotation Processor
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.annotationconstraints/annotationconstraints-processor/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.annotationconstraints/annotationconstraints-processor)
-[![Build Status](https://travis-ci.org/toolisticon/annotation-constraints.svg?branch=master)](https://travis-ci.org/toolisticon/annotation-constraints})
+[![Build Status](https://travis-ci.org/toolisticon/annotation-constraints.svg?branch=master)](https://travis-ci.org/toolisticon/annotation-constraints)
 [![codecov](https://codecov.io/gh/toolisticon/annotation-constraints/branch/master/graph/badge.svg)](https://codecov.io/gh/toolisticon/annotation-constraints)
 
 # Why you should use this project?
