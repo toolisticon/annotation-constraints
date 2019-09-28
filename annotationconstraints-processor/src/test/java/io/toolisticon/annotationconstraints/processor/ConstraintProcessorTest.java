@@ -32,7 +32,6 @@ public class ConstraintProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/testcasevalidusage/TestClass.java"))
                 .compilationShouldSucceed()
-                .expectedWarningMessages(ConstraintProcessorMessages.WARNING_CONSTRAINT_SPI_IMPLEMENTATION_NOT_FOUND.getCode())
                 .testCompilation();
     }
 

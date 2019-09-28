@@ -59,6 +59,24 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
     @Override
     public boolean processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
+    	// Check if processed annotations are constraints and used correctly
+    	for (TypeElement annotationTypeElement : annotations) {
+    		
+    		// check if annotation is constraint
+    		if (annotationTypeElement.getAnnotation(Constraint.class) != null) {
+    			
+    			AnnotationConstraintSpi service = annotationConstraintSpiMap.get(annotationTypeElement.getQualifiedName().toString());
+    			
+    			for (Element element : roundEnv.getElementsAnnotatedWith(annotationTypeElement)) {
+    				service.checkCorrectUsage(element, AnnotationUtils.getAnnotationMirror(annotationTypeElement, annotationTypeElement.getQualifiedName().toString()));
+    			}
+    					
+    					
+    		}
+    		
+    	}
+    	
+    	
         // process Services annotation
         for (TypeElement annotationTypeElement : annotations) {
 

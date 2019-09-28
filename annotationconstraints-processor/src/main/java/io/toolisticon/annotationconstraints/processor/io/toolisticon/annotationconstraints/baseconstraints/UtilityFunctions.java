@@ -1,10 +1,12 @@
 package io.toolisticon.annotationconstraints.processor.io.toolisticon.annotationconstraints.baseconstraints;
 
 import io.toolisticon.annotationprocessortoolkit.tools.AnnotationUtils;
+import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
+import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import java.lang.annotation.Annotation;
 
@@ -32,6 +34,14 @@ public final class UtilityFunctions {
 
         }
         return constraintAnnotation;
+    }
+    
+    public static boolean isPlacedOnAnnotationType(Element element) {
+    	return ElementUtils.CheckKindOfElement.isAnnotation(element);
+    }
+    
+    public static boolean isPlacedOnAnnotationAttribute(Element element) {
+    	return ElementUtils.CheckKindOfElement.isMethod(element) && ElementUtils.CheckKindOfElement.isAnnotation(element.getEnclosingElement());
     }
 
 }

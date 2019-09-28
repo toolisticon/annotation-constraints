@@ -22,6 +22,13 @@ public interface AnnotationConstraintSpi {
 
 
     /**
+     * Check if annotation is used correctly. 
+     * @param annotatedElement the annotated element
+     */
+    void checkCorrectUsage(Element annotatedElement, AnnotationMirror constraintAnnotationMirror);
+    
+    
+    /**
      * Checks constraint.
      *
      * @param annotatedElement The annotated element
