@@ -1,7 +1,9 @@
-package io.toolisticon.annotationconstraints.processor.io.toolisticon.annotationconstraints.baseconstraints;
+package io.toolisticon.annotationconstraints.processor.baseconstraints.minlength;
 
 import io.toolisticon.annotationconstraints.api.AnnotationConstraintSpi;
 import io.toolisticon.annotationconstraints.baseconstraints.MinLength;
+import io.toolisticon.annotationconstraints.processor.baseconstraints.BaseConstraintMessages;
+import io.toolisticon.annotationconstraints.processor.baseconstraints.UtilityFunctions;
 import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.TypeUtils;
@@ -11,8 +13,6 @@ import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.VariableElement;
-import javax.lang.model.type.TypeKind;
 
 import java.lang.annotation.Annotation;
 

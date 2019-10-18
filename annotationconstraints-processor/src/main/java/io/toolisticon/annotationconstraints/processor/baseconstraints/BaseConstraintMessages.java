@@ -1,4 +1,4 @@
-package io.toolisticon.annotationconstraints.processor.io.toolisticon.annotationconstraints.baseconstraints;
+package io.toolisticon.annotationconstraints.processor.baseconstraints;
 
 
 import io.toolisticon.annotationprocessortoolkit.tools.corematcher.ValidationMessage;

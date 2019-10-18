@@ -46,37 +46,36 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
 
-        // read spi implementations
+        // read spi implementations - try both processor and default classloader
         ServiceLoader<AnnotationConstraintSpi> services = ServiceLoader.load(AnnotationConstraintSpi.class, ConstraintProcessor.class.getClassLoader());
 
         for (AnnotationConstraintSpi annotationConstraintSpi : services) {
             annotationConstraintSpiMap.put(annotationConstraintSpi.getSupportedAnnotation().getCanonicalName(), annotationConstraintSpi);
         }
 
-        System.out.println("!!!!!!!!!! FOUND " + annotationConstraintSpiMap.size() + " SERVICES ????????????");
     }
 
     @Override
     public boolean processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
-    	// Check if processed annotations are constraints and used correctly
-    	for (TypeElement annotationTypeElement : annotations) {
-    		
-    		// check if annotation is constraint
-    		if (annotationTypeElement.getAnnotation(Constraint.class) != null) {
-    			
-    			AnnotationConstraintSpi service = annotationConstraintSpiMap.get(annotationTypeElement.getQualifiedName().toString());
-    			
-    			for (Element element : roundEnv.getElementsAnnotatedWith(annotationTypeElement)) {
-    				service.checkCorrectUsage(element, AnnotationUtils.getAnnotationMirror(annotationTypeElement, annotationTypeElement.getQualifiedName().toString()));
-    			}
-    					
-    					
-    		}
-    		
-    	}
-    	
-    	
+        // Check if processed annotations are constraints and used correctly
+        for (TypeElement annotationTypeElement : annotations) {
+
+            // check if annotation is constraint
+            if (annotationTypeElement.getAnnotation(Constraint.class) != null) {
+
+                AnnotationConstraintSpi service = annotationConstraintSpiMap.get(annotationTypeElement.getQualifiedName().toString());
+
+                for (Element element : roundEnv.getElementsAnnotatedWith(annotationTypeElement)) {
+                    service.checkCorrectUsage(element, AnnotationUtils.getAnnotationMirror(annotationTypeElement, annotationTypeElement.getQualifiedName().toString()));
+                }
+
+
+            }
+
+        }
+
+
         // process Services annotation
         for (TypeElement annotationTypeElement : annotations) {
 
@@ -123,7 +122,7 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
                         // check all constraints on attribute
                         for (AnnotationMirror constraintAnnotation : annotationAttributeConstraints.getConstraints()) {
 
-                            AnnotationConstraintSpi annotationConstraintSpi = annotationConstraintSpiMap.get(((TypeElement)constraintAnnotation.getAnnotationType().asElement()).getQualifiedName().toString());
+                            AnnotationConstraintSpi annotationConstraintSpi = annotationConstraintSpiMap.get(((TypeElement) constraintAnnotation.getAnnotationType().asElement()).getQualifiedName().toString());
 
                             if (annotationConstraintSpi != null) {
                                 annotationConstraintSpi.checkConstraints(element, annotationMirror, constraintAnnotation, annotationAttributeConstraints.getAttributeName());

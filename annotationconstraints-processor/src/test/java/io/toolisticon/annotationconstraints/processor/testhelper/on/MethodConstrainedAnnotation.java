@@ -1,6 +1,6 @@
-package io.toolisticon.annotationconstraints.baseconstraints;
+package io.toolisticon.annotationconstraints.processor.testhelper.on;
 
-import io.toolisticon.annotationconstraints.api.Constraint;
+import io.toolisticon.annotationconstraints.baseconstraints.On;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -9,12 +9,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Documented
-@Constraint
 @Target(ElementType.METHOD)
-@On(On.Location.ANNOTATION_ATTRIBUTE)
+@On(On.Location.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MinLength {
-
-    int value() default 0;
-
+public @interface MethodConstrainedAnnotation {
 }
