@@ -1,2 +1,1 @@
-io.toolisticon.annotationconstraints.processor.baseconstraints.on.OnConstraintImpl
-io.toolisticon.annotationconstraints.processor.baseconstraints.minlength.MinLengthConstraintImpl
+io.toolisticon.annotationconstraints.processor.testconstraint.TestConstraintServiceImpl

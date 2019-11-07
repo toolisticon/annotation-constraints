@@ -38,6 +38,12 @@
 
         <dependency>
             <groupId>io.toolisticon.annotationconstraints</groupId>
+            <artifactId>annotationconstraints-baseconstraints</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.toolisticon.annotationconstraints</groupId>
             <artifactId>annotationconstraints-processor</artifactId>
             <scope>provided</scope>
         </dependency>

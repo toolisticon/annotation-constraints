@@ -63,15 +63,15 @@
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <encoding>UTF-8</encoding>
 
-        <java.version>1.6</java.version>
+        <java.version>1.7</java.version>
 
-        <java.compile.source.version>1.6</java.compile.source.version>
-        <java.compile.target.version>1.6</java.compile.target.version>
+        <java.compile.source.version>1.7</java.compile.source.version>
+        <java.compile.target.version>1.7</java.compile.target.version>
 
 
         <compiletesting.version>0.5.0</compiletesting.version>
         <spiap.version>0.7.0</spiap.version>
-        <annotationProcessorToolkit.version>0.12.0</annotationProcessorToolkit.version>
+        <annotationProcessorToolkit.version>0.13.0</annotationProcessorToolkit.version>
 
         <!-- versions of test dependencies -->
         <junit.version>4.12</junit.version>
@@ -396,6 +396,12 @@
 
             <dependency>
                 <groupId>io.toolisticon.annotationconstraints</groupId>
+                <artifactId>annotationconstraints-baseconstraints</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.toolisticon.annotationconstraints</groupId>
                 <artifactId>annotationconstraints-processor</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -441,6 +447,7 @@
     <modules>
         <module>annotationconstraints-api</module>
         <module>annotationconstraints-processor</module>
+        <module>annotationconstraints-baseconstraints</module>
         <module>annotationconstraints-example</module>
         <!-- <module>annotationconstraints-integrationTest</module> -->
     </modules>

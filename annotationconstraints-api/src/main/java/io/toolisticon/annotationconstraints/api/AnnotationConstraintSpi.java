@@ -14,9 +14,9 @@ import java.lang.annotation.Annotation;
 public interface AnnotationConstraintSpi {
 
     /**
-     * Get the annotations provided by this spi implementation.
+     * Get the annotation supported by this spi implementation.
      *
-     * @return an array containing all provided annotations
+     * @return the supported annotation
      */
     Class<? extends Annotation> getSupportedAnnotation();
 

@@ -66,8 +66,10 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
 
                 AnnotationConstraintSpi service = annotationConstraintSpiMap.get(annotationTypeElement.getQualifiedName().toString());
 
-                for (Element element : roundEnv.getElementsAnnotatedWith(annotationTypeElement)) {
-                    service.checkCorrectUsage(element, AnnotationUtils.getAnnotationMirror(annotationTypeElement, annotationTypeElement.getQualifiedName().toString()));
+                if (service != null) {
+                    for (Element element : roundEnv.getElementsAnnotatedWith(annotationTypeElement)) {
+                        service.checkCorrectUsage(element, AnnotationUtils.getAnnotationMirror(annotationTypeElement, annotationTypeElement.getQualifiedName().toString()));
+                    }
                 }
 
 
