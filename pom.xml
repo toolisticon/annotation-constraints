@@ -396,6 +396,12 @@
 
             <dependency>
                 <groupId>io.toolisticon.annotationconstraints</groupId>
+                <artifactId>annotationconstraints-example-externalmapping</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.toolisticon.annotationconstraints</groupId>
                 <artifactId>annotationconstraints-baseconstraints</artifactId>
                 <version>${project.version}</version>
             </dependency>

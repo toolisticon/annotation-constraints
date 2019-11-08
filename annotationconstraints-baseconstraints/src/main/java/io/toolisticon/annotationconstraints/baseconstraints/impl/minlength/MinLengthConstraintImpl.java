@@ -4,6 +4,8 @@ import io.toolisticon.annotationconstraints.api.AnnotationConstraintSpi;
 import io.toolisticon.annotationconstraints.baseconstraints.MinLength;
 import io.toolisticon.annotationconstraints.baseconstraints.impl.BaseConstraintMessages;
 import io.toolisticon.annotationconstraints.baseconstraints.impl.UtilityFunctions;
+import io.toolisticon.annotationprocessortoolkit.tools.AnnotationUtils;
+import io.toolisticon.annotationprocessortoolkit.tools.AnnotationValueUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.TypeUtils;
@@ -45,14 +47,13 @@ public class MinLengthConstraintImpl implements AnnotationConstraintSpi {
     public void checkConstraints(Element annotatedElement, AnnotationMirror annotationMirrorToCheck, AnnotationMirror constraintAnnotationMirror, String constraintAttributeName) {
 
         AnnotationValue annotationValue = UtilityFunctions.getAnnotationValueOfAttribute(annotationMirrorToCheck, constraintAttributeName);
-
-        MinLength minLengthAnnotation = UtilityFunctions.getConstraintAnnotationOfAnnotationAttribute(annotationMirrorToCheck, constraintAttributeName, MinLength.class);
-
+        AnnotationValue minLengthAnnotationValue = AnnotationUtils.getAnnotationValueOfAttribute(constraintAnnotationMirror);
+        Integer minLength = AnnotationValueUtils.getIntegerValue(minLengthAnnotationValue);
         try {
             String value = (String) annotationValue.getValue();
 
-            if (value.length() < minLengthAnnotation.value()) {
-                MessagerUtils.error(annotatedElement, annotationMirrorToCheck, MinLengthConstraintMessages.ERROR_STRING_IS_TOO_SHORT, minLengthAnnotation.value());
+            if (value.length() < minLength) {
+                MessagerUtils.error(annotatedElement, annotationMirrorToCheck, MinLengthConstraintMessages.ERROR_STRING_IS_TOO_SHORT, minLength);
             }
         } catch (ClassCastException e) {
             MessagerUtils.error(annotatedElement, annotationMirrorToCheck, MinLengthConstraintMessages.ERROR_ATTRIBUTE_IS_NOT_OF_TYPE_STRING);

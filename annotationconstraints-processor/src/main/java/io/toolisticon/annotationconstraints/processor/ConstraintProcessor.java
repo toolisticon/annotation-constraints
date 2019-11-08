@@ -2,10 +2,12 @@ package io.toolisticon.annotationconstraints.processor;
 
 import io.toolisticon.annotationconstraints.api.AnnotationConstraintSpi;
 import io.toolisticon.annotationconstraints.api.Constraint;
+import io.toolisticon.annotationconstraints.api.ExternalConstraintMappingSpi;
 import io.toolisticon.annotationprocessortoolkit.AbstractAnnotationProcessor;
 import io.toolisticon.annotationprocessortoolkit.tools.AnnotationUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
+import io.toolisticon.annotationprocessortoolkit.tools.TypeUtils;
 import io.toolisticon.spiap.api.Service;
 
 import javax.annotation.processing.ProcessingEnvironment;
@@ -20,6 +22,8 @@ import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.ServiceLoader;
@@ -41,6 +45,7 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
 
     private Map<TypeElement, AnnotationConstraints> onAnnotationConstraintsLUT = new HashMap<TypeElement, AnnotationConstraints>();
     private Map<String, AnnotationConstraintSpi> annotationConstraintSpiMap = new HashMap<String, AnnotationConstraintSpi>();
+    private Map<String, String> externalAnnotationMapping = new HashMap<String, String>();
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
@@ -51,6 +56,15 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
 
         for (AnnotationConstraintSpi annotationConstraintSpi : services) {
             annotationConstraintSpiMap.put(annotationConstraintSpi.getSupportedAnnotation().getCanonicalName(), annotationConstraintSpi);
+        }
+
+        // read external mapping
+        ServiceLoader<ExternalConstraintMappingSpi> externalConstraintMappingServices = ServiceLoader.load(ExternalConstraintMappingSpi.class, ConstraintProcessor.class.getClassLoader());
+        Iterator<ExternalConstraintMappingSpi> iterator = externalConstraintMappingServices.iterator();
+        if(iterator.hasNext()) {
+                ExternalConstraintMappingSpi mapping = iterator.next();
+                externalAnnotationMapping.put(mapping.getTargetAnnotation(), mapping.getExternalMappingAnnotation());
+
         }
 
     }
@@ -81,17 +95,25 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
         // process Services annotation
         for (TypeElement annotationTypeElement : annotations) {
 
-
-            // check if annotation has been processed once before
-            AnnotationConstraints annotationConstraints = onAnnotationConstraintsLUT.get(annotationTypeElement);
-
-            if (annotationConstraints == null) {
-
+            String externalMapping = externalAnnotationMapping.get(annotationTypeElement.getQualifiedName().toString());
+            if(externalMapping != null) {
                 // annotation hasn't been processed before so determine constraints
-                annotationConstraints = determineConstraints(annotationTypeElement);
+                AnnotationConstraints annotationConstraints = determineConstraints(annotationTypeElement, TypeUtils.TypeRetrieval.getTypeElement(externalMapping));
                 onAnnotationConstraintsLUT.put(annotationTypeElement, annotationConstraints);
+            } else {
 
+                // check if annotation has been processed once before
+                AnnotationConstraints annotationConstraints = onAnnotationConstraintsLUT.get(annotationTypeElement);
+
+                if (annotationConstraints == null) {
+
+                    // annotation hasn't been processed before so determine constraints
+                    annotationConstraints = determineConstraints(annotationTypeElement);
+                    onAnnotationConstraintsLUT.put(annotationTypeElement, annotationConstraints);
+
+                }
             }
+
 
 
         }
@@ -148,11 +170,15 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
 
 
     private AnnotationConstraints determineConstraints(TypeElement annotationTypeElement) {
+        return determineConstraints(annotationTypeElement,annotationTypeElement);
+    }
+
+    private AnnotationConstraints determineConstraints(TypeElement annotationTypeElement, TypeElement externalMappingTypeElement) {
 
         // This will be done in two phases
         // PHASE 1 : check for constraints on annotation  type
         AnnotationConstraints annotationConstraints = new AnnotationConstraints(annotationTypeElement);
-        for (AnnotationMirror annotation : annotationTypeElement.getAnnotationMirrors()) {
+        for (AnnotationMirror annotation : externalMappingTypeElement.getAnnotationMirrors()) {
 
             if (hasConstraintAnnotationOnTypeElement(annotation)) {
                 annotationConstraints.addConstraintOnType(annotation);
@@ -162,7 +188,7 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
 
 
         // PHASE 2 : check for constraints on Annotation attributes
-        List<ExecutableElement> executableElements = ElementUtils.CastElement.castElementList(ElementUtils.AccessEnclosedElements.getEnclosedElementsOfKind(annotationTypeElement, ElementKind.METHOD), ExecutableElement.class);
+        List<ExecutableElement> executableElements = ElementUtils.CastElement.castElementList(ElementUtils.AccessEnclosedElements.getEnclosedElementsOfKind(externalMappingTypeElement, ElementKind.METHOD), ExecutableElement.class);
 
         for (ExecutableElement executableElement : executableElements) {
             String name = executableElement.getSimpleName().toString();
