@@ -1,8 +1,8 @@
 package io.toolisticon.annotationconstraints.processor;
 
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.compiletesting.CompileTestBuilder;
-import io.toolisticon.compiletesting.JavaFileObjectUtils;
+import io.toolisticon.cute.CompileTestBuilder;
+import io.toolisticon.cute.JavaFileObjectUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,15 +25,15 @@ public class ExternalConstraintMappingProcessorTest {
     public void testValidMapping() {
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/externalMapping/ValidExternalMapping.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
     }
 
     @Test
     public void testInvalidMapping() {
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/externalMapping/InvalidExternalMapping.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(ExternalConstraintMappingProcessorMessages.ERROR_ANNOTATION_ATTRIBUTE_NOT_FOUND_IN_TARGET_ANNOTATION.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(ExternalConstraintMappingProcessorMessages.ERROR_ANNOTATION_ATTRIBUTE_NOT_FOUND_IN_TARGET_ANNOTATION.getCode())
+                .executeTest();
     }
 
 }

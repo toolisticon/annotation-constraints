@@ -24,6 +24,7 @@ public interface AnnotationConstraintSpi {
     /**
      * Check if annotation is used correctly. 
      * @param annotatedElement the annotated element
+     * @param constraintAnnotationMirror the AnnotationMirror representing the constraint annotation
      */
     void checkCorrectUsage(Element annotatedElement, AnnotationMirror constraintAnnotationMirror);
     
@@ -34,8 +35,8 @@ public interface AnnotationConstraintSpi {
      * @param annotatedElement The annotated element
      * @param annotationMirrorToCheck the annotation which has to be validated
      * @param constraintAnnotationMirror the constraint annotation used for checking
-     * @param constraintAttributeName the name of the annotation attribute with constraint or null if it is placed on annotation type
+     * @param attributeNameToBeCheckedByConstraint the name of the annotation attribute with constraint or null if it is placed on annotation type
      */
-    void checkConstraints(Element annotatedElement, AnnotationMirror annotationMirrorToCheck, AnnotationMirror constraintAnnotationMirror, String constraintAttributeName);
+    void checkConstraints(Element annotatedElement, AnnotationMirror annotationMirrorToCheck, AnnotationMirror constraintAnnotationMirror, String attributeNameToBeCheckedByConstraint);
 
 }

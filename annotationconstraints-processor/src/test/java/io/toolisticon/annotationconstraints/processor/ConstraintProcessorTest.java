@@ -2,8 +2,8 @@ package io.toolisticon.annotationconstraints.processor;
 
 import io.toolisticon.annotationconstraints.processor.testconstraint.TestConstraintMessages;
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.compiletesting.CompileTestBuilder;
-import io.toolisticon.compiletesting.JavaFileObjectUtils;
+import io.toolisticon.cute.CompileTestBuilder;
+import io.toolisticon.cute.JavaFileObjectUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +33,7 @@ public class ConstraintProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/success/SuccessfulConstraintOnAnnotationType.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
     }
 
     @Test
@@ -42,7 +42,7 @@ public class ConstraintProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/success/SuccessfulConstraintOnAnnotationAttribute.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
     }
 
     @Test
@@ -51,8 +51,8 @@ public class ConstraintProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/failure/WrongLocation.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(TestConstraintMessages.ERROR_LOCATION.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(TestConstraintMessages.ERROR_LOCATION.getCode())
+                .executeTest();
     }
 
     @Test
@@ -61,8 +61,8 @@ public class ConstraintProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/failure/FailingConstraintOnAnnotationType.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(TestConstraintMessages.ERROR_IN_PROCESSING_PHASE.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(TestConstraintMessages.ERROR_IN_PROCESSING_PHASE.getCode())
+                .executeTest();
     }
 
     @Test
@@ -71,8 +71,8 @@ public class ConstraintProcessorTest {
         compileTestBuilder
                 .addSources(JavaFileObjectUtils.readFromResource("testcases/failure/FailingConstraintOnAnnotationType.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(TestConstraintMessages.ERROR_IN_PROCESSING_PHASE.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(TestConstraintMessages.ERROR_IN_PROCESSING_PHASE.getCode())
+                .executeTest();
     }
 
 }

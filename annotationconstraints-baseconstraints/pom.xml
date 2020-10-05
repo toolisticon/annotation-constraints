@@ -27,16 +27,19 @@
         </dependency>
 
         <dependency>
+            <groupId>io.toolisticon.annotationconstraints</groupId>
+            <artifactId>annotationconstraints-baseconstraints-api</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>io.toolisticon.annotationprocessortoolkit</groupId>
             <artifactId>annotationprocessor</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>io.toolisticon.spiap</groupId>
             <artifactId>spiap-api</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>io.toolisticon.spiap</groupId>
@@ -44,8 +47,8 @@
         </dependency>
 
         <dependency>
-            <groupId>io.toolisticon.compiletesting</groupId>
-            <artifactId>compiletesting</artifactId>
+            <groupId>io.toolisticon.cute</groupId>
+            <artifactId>cute</artifactId>
         </dependency>
 
     </dependencies>

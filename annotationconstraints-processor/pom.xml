@@ -40,8 +40,8 @@
         </dependency>
 
         <dependency>
-            <groupId>io.toolisticon.compiletesting</groupId>
-            <artifactId>compiletesting</artifactId>
+            <groupId>io.toolisticon.cute</groupId>
+            <artifactId>cute</artifactId>
         </dependency>
 
     </dependencies>
@@ -51,52 +51,52 @@
 
         <plugins>
 
-<!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
+            <!--
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-shade-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <phase>package</phase>
+                                    <goals>
+                                        <goal>shade</goal>
+                                    </goals>
 
 
-                        <configuration>
--->
-                            <!--
-                            <artifactSet>
-                                <excludes>
-                                    <exclude>io.toolisticon.beanbuilder:beanbuilder-api</exclude>
+                                    <configuration>
+            -->
+            <!--
+            <artifactSet>
+                <excludes>
+                    <exclude>io.toolisticon.beanbuilder:beanbuilder-api</exclude>
 
-                                </excludes>
-                            </artifactSet>
-                            -->
+                </excludes>
+            </artifactSet>
+            -->
 
-                            <!--
-                                usually you should repackage all referenced 3RD party libraries into your annotation processor jar.
-                                    - because the annotation processor should always be linked as provided dependency when it is used.
-                                    - to prevent a version conflict of your annotation processors dependencies and the applications dependencies.
-                            -->
-<!--
-                            <relocations>
-                                <relocation>
-                                    <pattern>io.toolisticon.annotationprocessortoolkit</pattern>
-                                    <shadedPattern>
-                                        io.toolisticon.annotationconstraints._3rdparty.io.toolisticon.annotationprocessortoolkit
-                                    </shadedPattern>
-                                </relocation>
-                            </relocations>
+            <!--
+                usually you should repackage all referenced 3RD party libraries into your annotation processor jar.
+                    - because the annotation processor should always be linked as provided dependency when it is used.
+                    - to prevent a version conflict of your annotation processors dependencies and the applications dependencies.
+            -->
+            <!--
+                                        <relocations>
+                                            <relocation>
+                                                <pattern>io.toolisticon.annotationprocessortoolkit</pattern>
+                                                <shadedPattern>
+                                                    io.toolisticon.annotationconstraints._3rdparty.io.toolisticon.annotationprocessortoolkit
+                                                </shadedPattern>
+                                            </relocation>
+                                        </relocations>
 
-                        </configuration>
+                                    </configuration>
 
-                    </execution>
-                </executions>
+                                </execution>
+                            </executions>
 
 
-            </plugin>
--->
+                        </plugin>
+            -->
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

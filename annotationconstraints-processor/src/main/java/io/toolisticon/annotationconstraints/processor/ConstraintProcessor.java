@@ -82,7 +82,7 @@ public class ConstraintProcessor extends AbstractAnnotationProcessor {
 
                 if (service != null) {
                     for (Element element : roundEnv.getElementsAnnotatedWith(annotationTypeElement)) {
-                        service.checkCorrectUsage(element, AnnotationUtils.getAnnotationMirror(annotationTypeElement, annotationTypeElement.getQualifiedName().toString()));
+                        service.checkCorrectUsage(element, AnnotationUtils.getAnnotationMirror(element, annotationTypeElement.getQualifiedName().toString()));
                     }
                 }
 

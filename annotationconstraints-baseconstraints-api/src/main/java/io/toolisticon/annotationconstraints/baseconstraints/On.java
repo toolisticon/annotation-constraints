@@ -10,12 +10,11 @@ import java.lang.annotation.Target;
 
 /**
  * The Target annotation is kind of fuzzy in some cases about where annotations might be used.
- *
+ * <p>
  * E.g. this is the case for TYPE, which allows you to use annotations on Classes, Interfaces, Enums and Annotations.
  * Another example is METHOD, which allows you to use annotations on methods or annotation attribute declarations.
- *
+ * <p>
  * This constraint helps you to add a constraint additional to the target annotation which.
- *
  */
 @Documented
 @Constraint
@@ -34,6 +33,8 @@ public @interface On {
         METHOD,
         CONSTRUCTOR,
         PARAMETER,
+        METHOD_PARAMETER,
+        CONSTRUCTOR_PARAMETER,
         FIELD
         // TODO shall we add something like METHOD_PARAMETER or CONSTRUCTOR_PARAMETER?
     }

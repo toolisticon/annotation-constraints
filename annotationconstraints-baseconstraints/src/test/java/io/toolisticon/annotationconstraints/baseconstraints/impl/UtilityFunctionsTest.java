@@ -5,8 +5,8 @@ import io.toolisticon.annotationprocessortoolkit.ToolingProvider;
 import io.toolisticon.annotationprocessortoolkit.tools.AnnotationUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
 import io.toolisticon.annotationprocessortoolkit.tools.TypeUtils;
-import io.toolisticon.compiletesting.CompileTestBuilder;
-import io.toolisticon.compiletesting.UnitTestProcessor;
+import io.toolisticon.cute.CompileTestBuilder;
+import io.toolisticon.cute.UnitTest;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -62,8 +62,9 @@ public class UtilityFunctionsTest {
 
     @Test
     public void getAnnotationValueOfAttribute_readMandatoryValue() {
-        unitTestBuilder.useProcessor(
-                new UnitTestProcessor() {
+        unitTestBuilder.defineTest(
+                new UnitTest<TypeElement>() {
+
                     @Override
                     public void unitTest(ProcessingEnvironment processingEnvironment, TypeElement typeElement) {
 
@@ -83,13 +84,13 @@ public class UtilityFunctionsTest {
                     }
                 })
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
     }
 
     @Test
     public void getAnnotationValueOfAttribute_readDefaultValue() {
-        unitTestBuilder.useProcessor(
-                new UnitTestProcessor() {
+        unitTestBuilder.defineTest(
+                new UnitTest<TypeElement>() {
                     @Override
                     public void unitTest(ProcessingEnvironment processingEnvironment, TypeElement typeElement) {
 
@@ -109,13 +110,13 @@ public class UtilityFunctionsTest {
                     }
                 })
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
     }
 
     @Test
-    public void getConstraintAnnotationOfAnnotation_validUsage (){
-        unitTestBuilder.useProcessor(
-                new UnitTestProcessor() {
+    public void getConstraintAnnotationOfAnnotation_validUsage() {
+        unitTestBuilder.defineTest(
+                new UnitTest<TypeElement>() {
                     @Override
                     public void unitTest(ProcessingEnvironment processingEnvironment, TypeElement typeElement) {
 
@@ -135,13 +136,13 @@ public class UtilityFunctionsTest {
                     }
                 })
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
     }
 
     @Test
-    public void getConstraintAnnotationOfAnnotationAttribute_validUsage (){
-        unitTestBuilder.useProcessor(
-                new UnitTestProcessor() {
+    public void getConstraintAnnotationOfAnnotationAttribute_validUsage() {
+        unitTestBuilder.defineTest(
+                new UnitTest<TypeElement>() {
                     @Override
                     public void unitTest(ProcessingEnvironment processingEnvironment, TypeElement typeElement) {
 
@@ -162,7 +163,7 @@ public class UtilityFunctionsTest {
                     }
                 })
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
     }
 
 }

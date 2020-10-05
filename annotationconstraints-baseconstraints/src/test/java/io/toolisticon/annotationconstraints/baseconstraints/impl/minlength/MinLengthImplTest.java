@@ -2,8 +2,8 @@ package io.toolisticon.annotationconstraints.baseconstraints.impl.minlength;
 
 import io.toolisticon.annotationconstraints.processor.ConstraintProcessor;
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.compiletesting.CompileTestBuilder;
-import io.toolisticon.compiletesting.JavaFileObjectUtils;
+import io.toolisticon.cute.CompileTestBuilder;
+import io.toolisticon.cute.JavaFileObjectUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class MinLengthImplTest {
     public void valid() {
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/minLength/ValidUsage.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -31,7 +31,8 @@ public class MinLengthImplTest {
     public void invalid() {
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/minLength/InvalidUsage.java"))
                 .compilationShouldFail()
-                .testCompilation();
+                .expectErrorMessageThatContains(MinLengthConstraintMessages.ERROR_STRING_IS_TOO_SHORT.getCode())
+                .executeTest();
 
     }
 

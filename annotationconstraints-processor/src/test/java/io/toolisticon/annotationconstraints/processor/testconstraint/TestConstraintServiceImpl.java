@@ -30,12 +30,12 @@ public class TestConstraintServiceImpl implements AnnotationConstraintSpi {
     }
 
     @Override
-    public void checkConstraints(Element annotatedElement, AnnotationMirror annotationMirrorToCheck, AnnotationMirror constraintAnnotationMirror, String constraintAttributeName) {
+    public void checkConstraints(Element annotatedElement, AnnotationMirror annotationMirrorToCheck, AnnotationMirror constraintAnnotationMirror, String attributeNameToBeCheckedByConstraint) {
 
-        if (constraintAttributeName != null) {
+        if (attributeNameToBeCheckedByConstraint != null) {
 
             List<? extends Element> elements = FluentElementFilter.createFluentElementFilter(annotationMirrorToCheck.getAnnotationType().asElement().getEnclosedElements())
-                    .applyFilter(CoreMatchers.BY_NAME).filterByOneOf(constraintAttributeName)
+                    .applyFilter(CoreMatchers.BY_NAME).filterByOneOf(attributeNameToBeCheckedByConstraint)
                     .applyFilter(CoreMatchers.BY_ELEMENT_KIND).filterByOneOf(ElementKind.METHOD)
                     .getResult();
 

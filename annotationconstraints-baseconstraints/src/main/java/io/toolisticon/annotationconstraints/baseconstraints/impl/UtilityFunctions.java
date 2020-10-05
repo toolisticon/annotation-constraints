@@ -28,6 +28,16 @@ public final class UtilityFunctions {
         return AnnotationUtils.getAnnotationValueOfAttribute(annotationMirrorToCheck, constraintAttributeName);
     }
 
+    /**
+     * Get the annotation value of an annotation attribute.
+     * @param annotationMirrorToCheck the annotation to get the attribute from
+     * @param constraintAttributeName the name of the attribute to get
+     * @return the AnnotationValue
+     */
+    public static AnnotationValue getAnnotationValueOfAttributeWithDefaults(AnnotationMirror annotationMirrorToCheck, String constraintAttributeName) {
+        return AnnotationUtils.getAnnotationValueOfAttributeWithDefaults(annotationMirrorToCheck, constraintAttributeName);
+    }
+
 
     /**
      * Get the constraint annotation from an AnnotationMirror.

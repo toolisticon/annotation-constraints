@@ -1,4 +1,4 @@
-package io.toolisticon.annotationconstraints.baseconstraints;
+package io.toolisticon.annotationconstraintsx.baseconstraints;
 
 import io.toolisticon.annotationconstraints.baseconstraints.testhelper.minLength.MinLengthTestAnnotation;
 

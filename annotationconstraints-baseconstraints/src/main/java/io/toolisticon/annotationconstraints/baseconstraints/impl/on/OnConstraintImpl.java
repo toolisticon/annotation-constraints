@@ -80,7 +80,9 @@ public class OnConstraintImpl implements AnnotationConstraintSpi {
                             }
                             break;
                         }
-                        case PARAMETER: {
+                        case PARAMETER:
+                        case CONSTRUCTOR_PARAMETER:
+                        case METHOD_PARAMETER: {
                             if (ElementType.PARAMETER.equals(elementType)) {
                                 foundLocation = true;
                             }
@@ -110,7 +112,7 @@ public class OnConstraintImpl implements AnnotationConstraintSpi {
 
 
     @Override
-    public void checkConstraints(Element annotatedElement, AnnotationMirror annotationMirrorToCheck, AnnotationMirror constraintAnnotationMirror, String constraintAttributeName) {
+    public void checkConstraints(Element annotatedElement, AnnotationMirror annotationMirrorToCheck, AnnotationMirror constraintAnnotationMirror, String attributeNameToBeCheckedByConstraint) {
 
 
         // Now check if annotation
@@ -172,6 +174,16 @@ public class OnConstraintImpl implements AnnotationConstraintSpi {
                 case PARAMETER: {
                     // must be placed on Parameter
                     foundMatchingElementType = ElementUtils.CheckKindOfElement.isParameter(annotatedElement);
+                    break;
+                }
+                case METHOD_PARAMETER: {
+                    // must be placed on Parameter
+                    foundMatchingElementType = ElementUtils.CheckKindOfElement.isParameter(annotatedElement) && ElementUtils.CheckKindOfElement.isMethod(annotatedElement.getEnclosingElement());
+                    break;
+                }
+                case CONSTRUCTOR_PARAMETER: {
+                    // must be placed on Parameter
+                    foundMatchingElementType = ElementUtils.CheckKindOfElement.isParameter(annotatedElement) && ElementUtils.CheckKindOfElement.isConstructor(annotatedElement.getEnclosingElement());
                     break;
                 }
             }

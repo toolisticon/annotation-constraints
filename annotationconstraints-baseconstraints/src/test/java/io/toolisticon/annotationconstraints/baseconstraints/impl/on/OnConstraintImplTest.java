@@ -2,8 +2,8 @@ package io.toolisticon.annotationconstraints.baseconstraints.impl.on;
 
 import io.toolisticon.annotationconstraints.processor.ConstraintProcessor;
 import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.compiletesting.CompileTestBuilder;
-import io.toolisticon.compiletesting.JavaFileObjectUtils;
+import io.toolisticon.cute.CompileTestBuilder;
+import io.toolisticon.cute.JavaFileObjectUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,7 +29,7 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnInterface.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -38,8 +38,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/InvalidUsageOnNonInterface.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
+                .executeTest();
 
     }
 
@@ -48,8 +48,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetInterface.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 
@@ -64,7 +64,7 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnClass.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -73,8 +73,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/InvalidUsageOnNonClass.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
+                .executeTest();
 
     }
 
@@ -83,8 +83,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetClass.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 
@@ -99,7 +99,7 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnEnum.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -108,8 +108,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/InvalidUsageOnNonEnum.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
+                .executeTest();
 
     }
 
@@ -118,8 +118,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetEnum.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 
@@ -134,7 +134,7 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnAnnotation.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -143,7 +143,7 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnAnnotationType.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -152,8 +152,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/InvalidUsageOnNonAnnotation.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
+                .executeTest();
 
     }
 
@@ -162,8 +162,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetAnnotation.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 
@@ -178,7 +178,7 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnMethod.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -187,8 +187,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/InvalidUsageOnNonMethod.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
+                .executeTest();
 
     }
 
@@ -197,8 +197,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetMethod.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 
@@ -213,7 +213,7 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnAnnotationAttribute.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -222,8 +222,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/InvalidUsageOnNonAnnotationAttribute.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_WRONG_USAGE.getCode())
+                .executeTest();
 
     }
 
@@ -232,8 +232,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetAnnotationAttribute.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 
@@ -248,7 +248,7 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnConstructor.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -257,8 +257,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetConstructor.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 
@@ -273,7 +273,7 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnField.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
@@ -282,8 +282,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetField.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 
@@ -298,17 +298,67 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnParameter.java"))
                 .compilationShouldSucceed()
-                .testCompilation();
+                .executeTest();
 
     }
 
     @Test
     public void mismatchingTarget_Parameter() {
 
-        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetParameter.java"))
+        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetConstructorParameter.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
+
+    }
+
+    /*
+     * ###########################################################
+     * ## Method Parameter
+     * ###########################################################
+     */
+
+    @Test
+    public void validUsage_MethodParameterConstraintOnParameter() {
+
+        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnMethodParameter.java"))
+                .compilationShouldSucceed()
+                .executeTest();
+
+    }
+
+    @Test
+    public void mismatchingTarget_MethodParameter() {
+
+        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetMethodParameter.java"))
+                .compilationShouldFail()
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
+
+    }
+
+    /*
+     * ###########################################################
+     * ## Constructor Parameter
+     * ###########################################################
+     */
+
+    @Test
+    public void validUsage_ConstructorParameterConstraintOnParameter() {
+
+        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/ValidUsageOnConstructorParameter.java"))
+                .compilationShouldSucceed()
+                .executeTest();
+
+    }
+
+    @Test
+    public void mismatchingTarget_ConstructorParameter() {
+
+        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetConstructorParameter.java"))
+                .compilationShouldFail()
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 
@@ -324,8 +374,8 @@ public class OnConstraintImplTest {
 
         compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/on/MismatchingTargetPackage.java"))
                 .compilationShouldFail()
-                .expectedErrorMessages(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
-                .testCompilation();
+                .expectErrorMessageThatContains(OnConstraintMessages.ERROR_MATCHING_TARGET_NOT_FOUND.getCode())
+                .executeTest();
 
     }
 }

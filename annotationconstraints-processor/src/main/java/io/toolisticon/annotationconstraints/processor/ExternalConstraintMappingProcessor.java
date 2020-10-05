@@ -49,7 +49,7 @@ public class ExternalConstraintMappingProcessor extends AbstractAnnotationProces
             TypeElement targetAnnotationTypeElement = TypeUtils.TypeRetrieval.getTypeElement(targetAnnotationName);
 
             // Now check all annotation attributes  for correctness
-            List<ExecutableElement> annotationAttributes = (List<ExecutableElement>) ElementUtils.AccessEnclosedElements.getEnclosedElementsOfKind(annotatedElement, ElementKind.METHOD);
+            List<ExecutableElement> annotationAttributes = ElementUtils.AccessEnclosedElements.<ExecutableElement>getEnclosedElementsOfKind(annotatedElement, ElementKind.METHOD);
             for (ExecutableElement annotationAttribute : annotationAttributes) {
 
                 if (!FluentElementFilter.createFluentElementFilter(targetAnnotationTypeElement.getEnclosedElements())
@@ -62,7 +62,7 @@ public class ExternalConstraintMappingProcessor extends AbstractAnnotationProces
             }
 
             // Now write service
-            writeConfigurationFiles(annotatedTypeElement, targetAnnotationTypeElement.getQualifiedName().toString(),annotatedTypeElement.getQualifiedName().toString());
+            writeConfigurationFiles(annotatedTypeElement, targetAnnotationTypeElement.getQualifiedName().toString(), annotatedTypeElement.getQualifiedName().toString());
 
         }
 

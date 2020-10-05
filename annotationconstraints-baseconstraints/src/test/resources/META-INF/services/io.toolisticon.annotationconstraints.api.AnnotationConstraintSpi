@@ -1,2 +1,4 @@
 io.toolisticon.annotationconstraints.baseconstraints.impl.minlength.MinLengthConstraintImpl
 io.toolisticon.annotationconstraints.baseconstraints.impl.on.OnConstraintImpl
+io.toolisticon.annotationconstraints.baseconstraints.impl.annotatedtypemustbe.AnnotatedTypeMustBeConstraintsImpl
+io.toolisticon.annotationconstraints.baseconstraints.impl.name.NameConstraintImpl
