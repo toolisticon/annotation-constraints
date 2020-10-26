@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
  */
 @Documented
 @Constraint
-@Target(ElementType.TYPE)
+@Target(ElementType.ANNOTATION_TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface On {
 

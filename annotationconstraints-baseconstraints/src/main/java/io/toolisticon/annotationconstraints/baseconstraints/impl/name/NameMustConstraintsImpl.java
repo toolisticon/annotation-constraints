@@ -27,10 +27,10 @@ public class NameMustConstraintsImpl implements AnnotationConstraintSpi {
     @Override
     public void checkCorrectUsage(Element annotatedElement, AnnotationMirror constraintAnnotationMirror) {
 
-        /**
+
         // test for regular expression
-        AnnotationValue comparisonMethodAnnotationValue = AnnotationUtils.getAnnotationValueOfAttributeWithDefaults(constraintAnnotationMirror, "comparisonMethod");
-        ComparisonMethod comparisonMethod = AnnotationValueUtils.getEnumValue(ComparisonMethod.class, comparisonMethodAnnotationValue);
+        ComparisonMethod comparisonMethod = getEnumValue(constraintAnnotationMirror, "comparisonMethod", ComparisonMethod.class);
+
 
         AnnotationValue valueAnnotationValue = AnnotationUtils.getAnnotationValueOfAttributeWithDefaults(constraintAnnotationMirror);
         String value = AnnotationValueUtils.getStringValue(valueAnnotationValue);
@@ -55,47 +55,47 @@ public class NameMustConstraintsImpl implements AnnotationConstraintSpi {
             }
 
         }
-*/
+
     }
 
 
     @Override
     public void checkConstraints(Element annotatedElement, AnnotationMirror annotationMirrorToCheck, AnnotationMirror constraintAnnotationMirror, String attributeNameToBeCheckedByConstraint) {
 
-        /*-
-        NameMust nameMustAnnotation = annotatedElement.getAnnotation(NameMust.class);
+        // get constraint annotation values
+        NameMust.NameKind nameKind = getEnumValue(constraintAnnotationMirror, "nameKind", NameMust.NameKind.class);
+        ConstraintsTarget target = getEnumValue(constraintAnnotationMirror, "constraintTarget", ConstraintsTarget.class);
+        ComparisonMethod comparisonMethod = getEnumValue(constraintAnnotationMirror, "comparisonMethod", ComparisonMethod.class);
+        String nameString = AnnotationValueUtils.getStringValue(AnnotationUtils.getAnnotationValueOfAttributeWithDefaults(constraintAnnotationMirror));
 
-        // First get target elements name
-        ConstraintsTarget target = nameMustAnnotation.constraintTarget();
-
-        String targetElementsName = target.getNameOfResolvedElement(annotationMirrorToCheck, annotatedElement);
+        // get the target elements name
+        String targetElementsName = target.getNameOfResolvedElement(annotationMirrorToCheck, annotatedElement, nameKind);
 
         // Now do comparison
-        switch (nameMustAnnotation.comparisonMethod()) {
-
-            case MATCH: {
-                if (nameMustAnnotation.value().equals(targetElementsName)) {
-                    MessagerUtils.error(annotatedElement, annotationMirrorToCheck, NameConstraintMessages.ERROR_REGULAR_EXPRESSION_VALUE_MUST_BE_EQUAL, target, nameMustAnnotation.value());
-                }
-                break;
-            }
-            case NOT_MATCH: {
-                if (nameMustAnnotation.value().equals(targetElementsName)) {
-                    MessagerUtils.error(annotatedElement, annotationMirrorToCheck, NameConstraintMessages.ERROR_REGULAR_EXPRESSION_VALUE_MUST_BE_EQUAL, target, nameMustAnnotation.value());
-                }
-                break;
-            }
+        switch (comparisonMethod) {
 
             case EQUAL: {
-
-                if (Pattern.matches(nameMustAnnotation.value(), targetElementsName)) {
-                    MessagerUtils.error(annotatedElement, annotationMirrorToCheck, NameConstraintMessages.ERROR_REGULAR_EXPRESSION_VALUE_MUST_MATCH, target, targetElementsName, nameMustAnnotation.value());
+                if (!nameString.equals(targetElementsName)) {
+                    MessagerUtils.error(annotatedElement, annotationMirrorToCheck, NameConstraintMessages.ERROR_REGULAR_EXPRESSION_VALUE_MUST_BE_EQUAL, target, nameString);
                 }
                 break;
             }
             case NOT_EQUAL: {
-                if (Pattern.matches(nameMustAnnotation.value(), targetElementsName)) {
-                    MessagerUtils.error(annotatedElement, annotationMirrorToCheck, NameConstraintMessages.ERROR_REGULAR_EXPRESSION_VALUE_MUST_MATCH, target, targetElementsName, nameMustAnnotation.value());
+                if (nameString.equals(targetElementsName)) {
+                    MessagerUtils.error(annotatedElement, annotationMirrorToCheck, NameConstraintMessages.ERROR_REGULAR_EXPRESSION_VALUE_MUST_NOT_BE_EQUAL, target, nameString);
+                }
+                break;
+            }
+
+            case MATCH: {
+                if (!Pattern.matches(nameString, targetElementsName)) {
+                    MessagerUtils.error(annotatedElement, annotationMirrorToCheck, NameConstraintMessages.ERROR_REGULAR_EXPRESSION_VALUE_MUST_MATCH, target, targetElementsName, nameString);
+                }
+                break;
+            }
+            case NOT_MATCH: {
+                if (Pattern.matches(nameString, targetElementsName)) {
+                    MessagerUtils.error(annotatedElement, annotationMirrorToCheck, NameConstraintMessages.ERROR_REGULAR_EXPRESSION_VALUE_MUST_MATCH, target, targetElementsName, nameString);
                 }
                 break;
             }
@@ -104,10 +104,11 @@ public class NameMustConstraintsImpl implements AnnotationConstraintSpi {
         }
 
 
-         */
-
     }
 
+    private <T extends Enum<T>> T getEnumValue(AnnotationMirror annotationMirror, String attributeName, Class<T> enumClass) {
+        return AnnotationValueUtils.getEnumValue(enumClass, AnnotationUtils.getAnnotationValueOfAttributeWithDefaults(annotationMirror, attributeName));
+    }
 
     private Pattern createPattern(Element annotatedElement, AnnotationMirror constraintAnnotationMirror, AnnotationValue valueAnnotationValue, String patternString) {
 
