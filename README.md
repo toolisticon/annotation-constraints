@@ -1,57 +1,17 @@
-# ${rootArtifactId} Annotation Processor
+# Annotation Constraints Annotation Processor
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.annotationconstraints/annotationconstraints-processor/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.annotationconstraints/annotationconstraints-processor)
 [![Build Status](https://travis-ci.org/toolisticon/annotation-constraints.svg?branch=master)](https://travis-ci.org/toolisticon/annotation-constraints)
 [![codecov](https://codecov.io/gh/toolisticon/annotation-constraints/branch/master/graph/badge.svg)](https://codecov.io/gh/toolisticon/annotation-constraints)
 
-# Why you should use this project?
+This is a tech demo about providing and validating constraints on annotations.
+There are two possible ways to achieve this:
 
+- Placing constraint annotations on your annotation types or attributes
+- Creating a digital twin annotation to define constraints on 3rd party annotations.
 
-# Features
-Annotation processor that
-
-...
-
-# How does it work?
-
-Just add the ${rootArtifactId} annotation processor dependency to your dependencies
-
-```xml`
-<dependencies>
-    <!-- must be on provided scope since it is just needed at compile time -->
-    <dependency>
-        <groupId>${groupId}</groupId>
-        <artifactId>${rootArtifactId}-processor</artifactId>
-        <version>0.1.0</version>
-        <scope>provided</scope>
-    </dependency>
-</dependencies>
-``
-
-
-## Preconditions
-
-## Example
-    
-# Contributing
-
-We welcome any kind of suggestions and pull requests.
-
-## Building and developing the ${rootArtifactId} annotation processor
-
-The ${rootArtifactId} is built using Maven.
-A simple import of the pom in your IDE should get you up and running. To build the ${rootArtifactId} on the commandline, just run `mvn` or `mvn clean install`
-
-## Requirements
-
-The likelihood of a pull request being used rises with the following properties:
-
-- You have used a feature branch.
-- You have included a test that demonstrates the functionality added or fixed.
-- You adhered to the [code conventions](http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html).
-
-## Contributions
-
+The project provides an annotation processor that is applied on all annotation types checking for existing constraints. Then it picks up the corresponding constraint implementation via an SPI and tests it.
+It trigger compiler errors in case of broken constraints...
 
 # License
 

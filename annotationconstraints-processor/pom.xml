@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>annotationconstraints-processor</artifactId>
-    <packaging>bundle</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>io.toolisticon.annotationconstraints</groupId>
@@ -23,20 +23,14 @@
 
 
         <dependency>
-            <groupId>io.toolisticon.annotationprocessortoolkit</groupId>
-            <artifactId>annotationprocessor</artifactId>
+            <groupId>io.toolisticon.aptk</groupId>
+            <artifactId>aptk-tools</artifactId>
         </dependency>
 
 
         <dependency>
             <groupId>io.toolisticon.spiap</groupId>
             <artifactId>spiap-api</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>io.toolisticon.spiap</groupId>
-            <artifactId>spiap-processor</artifactId>
         </dependency>
 
         <dependency>
@@ -82,9 +76,9 @@
             <!--
                                         <relocations>
                                             <relocation>
-                                                <pattern>io.toolisticon.annotationprocessortoolkit</pattern>
+                                                <pattern>io.toolisticon.aptk</pattern>
                                                 <shadedPattern>
-                                                    io.toolisticon.annotationconstraints._3rdparty.io.toolisticon.annotationprocessortoolkit
+                                                    io.toolisticon.annotationconstraints._3rdparty.io.toolisticon.aptk
                                                 </shadedPattern>
                                             </relocation>
                                         </relocations>
@@ -104,6 +98,14 @@
                     <verbose>true</verbose>
                     <source>${java.compile.source.version}</source>
                     <target>${java.compile.target.version}</target>
+
+                    <annotationProcessorPaths>
+                        <annotationProcessorPath>
+                            <groupId>io.toolisticon.spiap</groupId>
+                            <artifactId>spiap-processor</artifactId>
+                            <version>${spiap.version}</version>
+                        </annotationProcessorPath>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
 

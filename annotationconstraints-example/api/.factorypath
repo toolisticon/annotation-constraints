@@ -1,0 +1,10 @@
+<factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/toolisticon/annotationconstraints/annotationconstraints-baseconstraints/0.1.0-SNAPSHOT/annotationconstraints-baseconstraints-0.1.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/toolisticon/annotationconstraints/annotationconstraints-baseconstraints-api/0.1.0-SNAPSHOT/annotationconstraints-baseconstraints-api-0.1.0-SNAPSHOT.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/toolisticon/annotationprocessortoolkit/annotationprocessor/0.14.4/annotationprocessor-0.14.4.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/toolisticon/annotationprocessortoolkit/common/0.14.4/common-0.14.4.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/toolisticon/annotationprocessortoolkit/templating/0.14.4/templating-0.14.4.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/toolisticon/spiap/spiap-api/0.7.0/spiap-api-0.7.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/io/toolisticon/spiap/spiap-processor/0.7.0/spiap-processor-0.7.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="PLUGIN" id="org.eclipse.jst.ws.annotations.core" enabled="false" runInBatchMode="false"/>
+</factorypath>

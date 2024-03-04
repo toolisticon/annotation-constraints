@@ -1,17 +1,14 @@
 package io.toolisticon.annotationconstraints.processor.testconstraint;
 
 import io.toolisticon.annotationconstraints.api.AnnotationConstraintSpi;
-import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.corematcher.CoreMatchers;
-import io.toolisticon.annotationprocessortoolkit.tools.fluentfilter.FluentElementFilter;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
+import io.toolisticon.aptk.tools.ElementUtils;
+import io.toolisticon.aptk.tools.MessagerUtils;
+import io.toolisticon.aptk.tools.corematcher.CoreMatchers;
+import io.toolisticon.aptk.tools.fluentfilter.FluentElementFilter;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.ExecutableElement;
 import java.lang.annotation.Annotation;
 import java.util.List;
 

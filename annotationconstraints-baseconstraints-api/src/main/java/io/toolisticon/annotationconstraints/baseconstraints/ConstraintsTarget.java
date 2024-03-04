@@ -1,7 +1,7 @@
 package io.toolisticon.annotationconstraints.baseconstraints;
 
-import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
+import io.toolisticon.aptk.tools.ElementUtils;
+import io.toolisticon.aptk.tools.MessagerUtils;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;

@@ -1,6 +1,6 @@
 package io.toolisticon.annotationconstraints.baseconstraints.impl.on;
 
-import io.toolisticon.annotationprocessortoolkit.tools.corematcher.ValidationMessage;
+import io.toolisticon.aptk.tools.corematcher.ValidationMessage;
 
 public enum OnConstraintMessages implements ValidationMessage {
 

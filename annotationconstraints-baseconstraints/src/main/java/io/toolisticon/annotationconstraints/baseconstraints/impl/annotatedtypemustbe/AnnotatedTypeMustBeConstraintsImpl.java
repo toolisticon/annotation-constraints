@@ -5,10 +5,12 @@ import io.toolisticon.annotationconstraints.baseconstraints.AnnotatedTypeMustBe;
 import io.toolisticon.annotationconstraints.baseconstraints.ConstraintsTarget;
 import io.toolisticon.annotationconstraints.baseconstraints.impl.BaseConstraintMessages;
 import io.toolisticon.annotationconstraints.baseconstraints.impl.UtilityFunctions;
-import io.toolisticon.annotationprocessortoolkit.tools.AnnotationValueUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.spiap.api.Service;
+import io.toolisticon.aptk.tools.AnnotationValueUtils;
+import io.toolisticon.aptk.tools.ElementUtils;
+import io.toolisticon.aptk.tools.MessagerUtils;
+import io.toolisticon.aptk.tools.TypeMirrorWrapper;
+import io.toolisticon.aptk.tools.wrapper.ElementWrapper;
+import io.toolisticon.spiap.api.SpiService;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -16,7 +18,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.type.TypeMirror;
 import java.lang.annotation.Annotation;
 
-@Service(value = AnnotationConstraintSpi.class)
+@SpiService(value = AnnotationConstraintSpi.class)
 public class AnnotatedTypeMustBeConstraintsImpl implements AnnotationConstraintSpi {
 
     @Override
@@ -43,31 +45,31 @@ public class AnnotatedTypeMustBeConstraintsImpl implements AnnotationConstraintS
         AnnotationValue comparisonKindAnnotationValue = UtilityFunctions.getAnnotationValueOfAttributeWithDefaults(constraintAnnotationMirror, "comparisionKind");
         AnnotationValue constraintTarget = UtilityFunctions.getAnnotationValueOfAttributeWithDefaults(constraintAnnotationMirror, "constraintTarget");
 
-        TypeMirror targetClassTypeMirror = AnnotationValueUtils.getClassValue(annotationValue);
-        AnnotatedTypeMustBe.ComparisionKind comparisionKind = AnnotationValueUtils.getEnumValue(AnnotatedTypeMustBe.ComparisionKind.class, comparisonKindAnnotationValue);
+        TypeMirrorWrapper targetClassTypeMirror = TypeMirrorWrapper.wrap(AnnotationValueUtils.getClassValueAsFQN(annotationValue));
+        AnnotatedTypeMustBe.ComparisionKind comparisonKind = AnnotationValueUtils.getEnumValue(AnnotatedTypeMustBe.ComparisionKind.class, comparisonKindAnnotationValue);
         ConstraintsTarget constraintsTarget = AnnotationValueUtils.getEnumValue(ConstraintsTarget.class, constraintTarget);
 
-        Element targetElement = constraintsTarget.resolve(annotationMirrorToCheck, annotatedElement);
+        ElementWrapper<?> targetElement = ElementWrapper.wrap(constraintsTarget.resolve(annotationMirrorToCheck, annotatedElement));
 
         if (
                 !(
-                        (ElementUtils.CheckKindOfElement.isAnnotationAttribute(targetElement)
-                                || ElementUtils.CheckKindOfElement.isMethodParameter(targetElement)
-                                || ElementUtils.CheckKindOfElement.isConstructorParameter(targetElement)
-                                || ElementUtils.CheckKindOfElement.isField(targetElement)
-                                || ElementUtils.CheckKindOfElement.isClass(targetElement)
-                                || ElementUtils.CheckKindOfElement.isInterface(targetElement)
-                        ) && compare(comparisionKind, targetElement.asType(), targetClassTypeMirror)
+                        (targetElement.isAnnotationAttribute()
+                                || targetElement.isMethodParameter()
+                                || targetElement.isConstructorParameter()
+                                || targetElement.isField()
+                                || targetElement.isClass()
+                                || targetElement.isInterface()
+                        ) && compare(comparisonKind, targetElement.unwrap().asType(), targetClassTypeMirror.unwrap())
                 ) && !(
-                        (ElementUtils.CheckKindOfElement.isMethod(targetElement)
-                                && compare(comparisionKind, ElementUtils.CastElement.castMethod(targetElement).getReturnType(), targetClassTypeMirror)
+                        (targetElement.isMethod()
+                                && compare(comparisonKind, ElementUtils.CastElement.castMethod(targetElement.unwrap()).getReturnType(), targetClassTypeMirror.unwrap())
                         )
                 )
         ) {
             if (constraintsTarget != ConstraintsTarget.ANNOTATED_ELEMENT) {
-                MessagerUtils.error(annotatedElement, annotationMirrorToCheck, AnnotatedTypeMustBeConstraintMessages.ERROR_CHECK_FAILS_FOR_ENCLOSING_ELEMENT, constraintsTarget.name(), annotationMirrorToCheck.getAnnotationType().toString(), comparisionKind.name(), targetClassTypeMirror.toString());
+                MessagerUtils.error(annotatedElement, annotationMirrorToCheck, AnnotatedTypeMustBeConstraintMessages.ERROR_CHECK_FAILS_FOR_ENCLOSING_ELEMENT, constraintsTarget.name(), annotationMirrorToCheck.getAnnotationType().toString(), comparisonKind.name(), targetClassTypeMirror.toString());
             } else {
-                MessagerUtils.error(annotatedElement, annotationMirrorToCheck, AnnotatedTypeMustBeConstraintMessages.ERROR_CHECK_FAILS_FOR_ANNOTATED_ELEMENT, annotationMirrorToCheck.getAnnotationType().toString(), comparisionKind.name(), targetClassTypeMirror.toString());
+                MessagerUtils.error(annotatedElement, annotationMirrorToCheck, AnnotatedTypeMustBeConstraintMessages.ERROR_CHECK_FAILS_FOR_ANNOTATED_ELEMENT, annotationMirrorToCheck.getAnnotationType().toString(), comparisonKind.name(), targetClassTypeMirror.toString());
             }
         }
 

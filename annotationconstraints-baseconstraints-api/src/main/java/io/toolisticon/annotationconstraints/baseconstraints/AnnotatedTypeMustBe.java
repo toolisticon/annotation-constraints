@@ -1,7 +1,7 @@
 package io.toolisticon.annotationconstraints.baseconstraints;
 
 import io.toolisticon.annotationconstraints.api.Constraint;
-import io.toolisticon.annotationprocessortoolkit.tools.TypeUtils;
+import io.toolisticon.aptk.tools.TypeUtils;
 
 import javax.lang.model.type.TypeMirror;
 import java.lang.annotation.Documented;

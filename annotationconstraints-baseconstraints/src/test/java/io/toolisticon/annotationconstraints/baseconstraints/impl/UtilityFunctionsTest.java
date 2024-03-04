@@ -1,12 +1,14 @@
 package io.toolisticon.annotationconstraints.baseconstraints.impl;
 
 import io.toolisticon.annotationconstraints.api.Constraint;
-import io.toolisticon.annotationprocessortoolkit.ToolingProvider;
-import io.toolisticon.annotationprocessortoolkit.tools.AnnotationUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.TypeUtils;
-import io.toolisticon.cute.CompileTestBuilder;
+import io.toolisticon.aptk.common.ToolingProvider;
+import io.toolisticon.aptk.tools.AnnotationUtils;
+import io.toolisticon.aptk.tools.MessagerUtils;
+import io.toolisticon.aptk.tools.TypeUtils;
+import io.toolisticon.cute.Cute;
+import io.toolisticon.cute.CuteApi;
 import io.toolisticon.cute.UnitTest;
+import io.toolisticon.cute.UnitTestWithoutPassIn;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Before;
@@ -52,7 +54,7 @@ public class UtilityFunctionsTest {
     // -- Unit tests
     // -------------------------------------------------------------------
 
-    private CompileTestBuilder.UnitTestBuilder unitTestBuilder = CompileTestBuilder
+    private CuteApi.UnitTestRootInterface unitTestBuilder = Cute
             .unitTest();
 
     @Before
@@ -62,11 +64,11 @@ public class UtilityFunctionsTest {
 
     @Test
     public void getAnnotationValueOfAttribute_readMandatoryValue() {
-        unitTestBuilder.defineTest(
-                new UnitTest<TypeElement>() {
+        unitTestBuilder.when(
+                new UnitTestWithoutPassIn() {
 
                     @Override
-                    public void unitTest(ProcessingEnvironment processingEnvironment, TypeElement typeElement) {
+                    public void unitTest(ProcessingEnvironment processingEnvironment) {
 
                         // setup tooling provider
                         ToolingProvider.setTooling(processingEnvironment);
@@ -83,16 +85,16 @@ public class UtilityFunctionsTest {
 
                     }
                 })
-                .compilationShouldSucceed()
+                .thenExpectThat().compilationSucceeds()
                 .executeTest();
     }
 
     @Test
     public void getAnnotationValueOfAttribute_readDefaultValue() {
-        unitTestBuilder.defineTest(
-                new UnitTest<TypeElement>() {
+        unitTestBuilder.when(
+                new UnitTestWithoutPassIn() {
                     @Override
-                    public void unitTest(ProcessingEnvironment processingEnvironment, TypeElement typeElement) {
+                    public void unitTest(ProcessingEnvironment processingEnvironment) {
 
                         // setup tooling provider
                         ToolingProvider.setTooling(processingEnvironment);
@@ -109,16 +111,16 @@ public class UtilityFunctionsTest {
 
                     }
                 })
-                .compilationShouldSucceed()
+                .thenExpectThat().compilationSucceeds()
                 .executeTest();
     }
 
     @Test
     public void getConstraintAnnotationOfAnnotation_validUsage() {
-        unitTestBuilder.defineTest(
-                new UnitTest<TypeElement>() {
+        unitTestBuilder.when(
+                new UnitTestWithoutPassIn() {
                     @Override
-                    public void unitTest(ProcessingEnvironment processingEnvironment, TypeElement typeElement) {
+                    public void unitTest(ProcessingEnvironment processingEnvironment) {
 
                         // setup tooling provider
                         ToolingProvider.setTooling(processingEnvironment);
@@ -135,16 +137,16 @@ public class UtilityFunctionsTest {
 
                     }
                 })
-                .compilationShouldSucceed()
+                .thenExpectThat().compilationSucceeds()
                 .executeTest();
     }
 
     @Test
     public void getConstraintAnnotationOfAnnotationAttribute_validUsage() {
-        unitTestBuilder.defineTest(
-                new UnitTest<TypeElement>() {
+        unitTestBuilder.when(
+                new UnitTestWithoutPassIn() {
                     @Override
-                    public void unitTest(ProcessingEnvironment processingEnvironment, TypeElement typeElement) {
+                    public void unitTest(ProcessingEnvironment processingEnvironment) {
 
                         // setup tooling provider
                         ToolingProvider.setTooling(processingEnvironment);
@@ -162,7 +164,7 @@ public class UtilityFunctionsTest {
 
                     }
                 })
-                .compilationShouldSucceed()
+                .thenExpectThat().compilationSucceeds()
                 .executeTest();
     }
 

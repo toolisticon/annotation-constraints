@@ -1,8 +1,8 @@
 package io.toolisticon.annotationconstraints.processor;
 
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.cute.CompileTestBuilder;
-import io.toolisticon.cute.JavaFileObjectUtils;
+import io.toolisticon.aptk.tools.MessagerUtils;
+import io.toolisticon.cute.Cute;
+import io.toolisticon.cute.CuteApi;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,9 +11,8 @@ import org.junit.Test;
  */
 public class ExternalConstraintMappingProcessorTest {
 
-    private CompileTestBuilder.CompilationTestBuilder compileTestBuilder = CompileTestBuilder
-            .compilationTest()
-            .addProcessors(ExternalConstraintMappingProcessor.class);
+    private CuteApi.BlackBoxTestSourceFilesInterface compileTestBuilder = Cute.blackBoxTest()
+            .given().processors(ExternalConstraintMappingProcessor.class);
 
     @Before
     public void init() {
@@ -23,16 +22,16 @@ public class ExternalConstraintMappingProcessorTest {
 
     @Test
     public void testValidMapping() {
-        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/externalMapping/ValidExternalMapping.java"))
-                .compilationShouldSucceed()
+        compileTestBuilder.andSourceFiles("/testcases/externalMapping/ValidExternalMapping.java")
+                .whenCompiled().thenExpectThat().compilationSucceeds()
                 .executeTest();
     }
 
     @Test
     public void testInvalidMapping() {
-        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/externalMapping/InvalidExternalMapping.java"))
-                .compilationShouldFail()
-                .expectErrorMessageThatContains(ExternalConstraintMappingProcessorMessages.ERROR_ANNOTATION_ATTRIBUTE_NOT_FOUND_IN_TARGET_ANNOTATION.getCode())
+        compileTestBuilder.andSourceFiles("/testcases/externalMapping/InvalidExternalMapping.java")
+                .whenCompiled().thenExpectThat().compilationFails()
+                .andThat().compilerMessage().ofKindError().contains(ExternalConstraintMappingProcessorMessages.ERROR_ANNOTATION_ATTRIBUTE_NOT_FOUND_IN_TARGET_ANNOTATION.getCode())
                 .executeTest();
     }
 

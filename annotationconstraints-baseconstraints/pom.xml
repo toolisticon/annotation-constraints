@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>annotationconstraints-baseconstraints</artifactId>
-    <packaging>bundle</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>io.toolisticon.annotationconstraints</groupId>
@@ -32,8 +32,8 @@
         </dependency>
 
         <dependency>
-            <groupId>io.toolisticon.annotationprocessortoolkit</groupId>
-            <artifactId>annotationprocessor</artifactId>
+            <groupId>io.toolisticon.aptk</groupId>
+            <artifactId>aptk-tools</artifactId>
         </dependency>
 
         <dependency>
@@ -64,7 +64,16 @@
                     <verbose>true</verbose>
                     <source>${java.compile.source.version}</source>
                     <target>${java.compile.target.version}</target>
+
+                    <annotationProcessorPaths>
+                        <annotationProcessorPath>
+                            <groupId>io.toolisticon.spiap</groupId>
+                            <artifactId>spiap-processor</artifactId>
+                            <version>${spiap.version}</version>
+                        </annotationProcessorPath>
+                    </annotationProcessorPaths>
                 </configuration>
+
             </plugin>
 
 

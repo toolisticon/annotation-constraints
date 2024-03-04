@@ -1,6 +1,6 @@
 package io.toolisticon.annotationconstraints.beanvalidation.impl.decimalmax;
 
-import io.toolisticon.annotationprocessortoolkit.tools.corematcher.ValidationMessage;
+import io.toolisticon.aptk.tools.corematcher.ValidationMessage;
 
 public enum DecimalMaxMessages implements ValidationMessage {
 

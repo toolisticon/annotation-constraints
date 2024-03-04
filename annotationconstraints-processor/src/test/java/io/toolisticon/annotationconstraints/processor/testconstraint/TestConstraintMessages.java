@@ -1,6 +1,6 @@
 package io.toolisticon.annotationconstraints.processor.testconstraint;
 
-import io.toolisticon.annotationprocessortoolkit.tools.corematcher.ValidationMessage;
+import io.toolisticon.aptk.tools.corematcher.ValidationMessage;
 
 /**
  * Messages for {@link TestConstraintServiceImpl}.

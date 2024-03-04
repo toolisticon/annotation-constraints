@@ -4,9 +4,9 @@ import io.toolisticon.annotationconstraints.api.AnnotationConstraintSpi;
 import io.toolisticon.annotationconstraints.baseconstraints.On;
 import io.toolisticon.annotationconstraints.baseconstraints.impl.BaseConstraintMessages;
 import io.toolisticon.annotationconstraints.baseconstraints.impl.UtilityFunctions;
-import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.spiap.api.Service;
+import io.toolisticon.aptk.tools.ElementUtils;
+import io.toolisticon.aptk.tools.MessagerUtils;
+import io.toolisticon.spiap.api.SpiService;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
@@ -14,7 +14,7 @@ import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-@Service(value = AnnotationConstraintSpi.class)
+@SpiService(value = AnnotationConstraintSpi.class)
 public class OnConstraintImpl implements AnnotationConstraintSpi {
 
     @Override

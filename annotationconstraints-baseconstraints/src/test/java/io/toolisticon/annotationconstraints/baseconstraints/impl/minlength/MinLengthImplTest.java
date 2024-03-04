@@ -1,17 +1,17 @@
 package io.toolisticon.annotationconstraints.baseconstraints.impl.minlength;
 
 import io.toolisticon.annotationconstraints.processor.ConstraintProcessor;
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.cute.CompileTestBuilder;
+import io.toolisticon.aptk.tools.MessagerUtils;
+import io.toolisticon.cute.Cute;
+import io.toolisticon.cute.CuteApi;
 import io.toolisticon.cute.JavaFileObjectUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 public class MinLengthImplTest {
 
-    private CompileTestBuilder.CompilationTestBuilder compileTestBuilder = CompileTestBuilder
-            .compilationTest()
-            .addProcessors(ConstraintProcessor.class);
+    private CuteApi.BlackBoxTestSourceFilesInterface compileTestBuilder = Cute.blackBoxTest()
+            .given().processors(ConstraintProcessor.class);
 
     @Before
     public void init() {
@@ -20,8 +20,8 @@ public class MinLengthImplTest {
 
     @Test
     public void valid() {
-        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/minLength/ValidUsage.java"))
-                .compilationShouldSucceed()
+        compileTestBuilder.andSourceFiles("/testcases/baseconstraints/minLength/ValidUsage.java")
+                .whenCompiled().thenExpectThat().compilationSucceeds()
                 .executeTest();
 
     }
@@ -29,9 +29,9 @@ public class MinLengthImplTest {
 
     @Test
     public void invalid() {
-        compileTestBuilder.addSources(JavaFileObjectUtils.readFromResource("/testcases/baseconstraints/minLength/InvalidUsage.java"))
-                .compilationShouldFail()
-                .expectErrorMessageThatContains(MinLengthConstraintMessages.ERROR_STRING_IS_TOO_SHORT.getCode())
+        compileTestBuilder.andSourceFiles("/testcases/baseconstraints/minLength/InvalidUsage.java")
+                .whenCompiled().thenExpectThat().compilationFails()
+                .andThat().compilerMessage().ofKindError().contains(MinLengthConstraintMessages.ERROR_STRING_IS_TOO_SHORT.getCode())
                 .executeTest();
 
     }

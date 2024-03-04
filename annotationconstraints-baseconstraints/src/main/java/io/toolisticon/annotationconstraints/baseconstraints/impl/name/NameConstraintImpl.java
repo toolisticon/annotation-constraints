@@ -4,10 +4,10 @@ import io.toolisticon.annotationconstraints.api.AnnotationConstraintSpi;
 import io.toolisticon.annotationconstraints.baseconstraints.ComparisonMethod;
 import io.toolisticon.annotationconstraints.baseconstraints.ConstraintsTarget;
 import io.toolisticon.annotationconstraints.baseconstraints.NameMust;
-import io.toolisticon.annotationprocessortoolkit.tools.AnnotationUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.AnnotationValueUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.spiap.api.Service;
+import io.toolisticon.aptk.tools.AnnotationUtils;
+import io.toolisticon.aptk.tools.AnnotationValueUtils;
+import io.toolisticon.aptk.tools.MessagerUtils;
+import io.toolisticon.spiap.api.SpiService;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -15,7 +15,7 @@ import javax.lang.model.element.Element;
 import java.lang.annotation.Annotation;
 import java.util.regex.Pattern;
 
-@Service(value = AnnotationConstraintSpi.class)
+@SpiService(value = AnnotationConstraintSpi.class)
 public class NameConstraintImpl implements AnnotationConstraintSpi {
 
     @Override

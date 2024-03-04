@@ -1,11 +1,11 @@
 package ${package};
 
 import io.toolisticon.annotationconstraints.api.ExternalConstraintMappingSpi;
-import io.toolisticon.spiap.api.Service;
+import io.toolisticon.spiap.api.SpiService;
 
 import java.lang.annotation.Annotation;
 
-@Service(ExternalConstraintMappingSpi.class)
+@SpiService(ExternalConstraintMappingSpi.class)
 public class ${className} implements ExternalConstraintMappingSpi{
 
     public String getTargetAnnotation() {

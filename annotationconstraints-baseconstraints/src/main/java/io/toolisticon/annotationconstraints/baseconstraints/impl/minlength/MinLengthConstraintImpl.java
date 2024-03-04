@@ -4,12 +4,12 @@ import io.toolisticon.annotationconstraints.api.AnnotationConstraintSpi;
 import io.toolisticon.annotationconstraints.baseconstraints.MinLength;
 import io.toolisticon.annotationconstraints.baseconstraints.impl.BaseConstraintMessages;
 import io.toolisticon.annotationconstraints.baseconstraints.impl.UtilityFunctions;
-import io.toolisticon.annotationprocessortoolkit.tools.AnnotationUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.AnnotationValueUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.ElementUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.MessagerUtils;
-import io.toolisticon.annotationprocessortoolkit.tools.TypeUtils;
-import io.toolisticon.spiap.api.Service;
+import io.toolisticon.aptk.tools.AnnotationUtils;
+import io.toolisticon.aptk.tools.AnnotationValueUtils;
+import io.toolisticon.aptk.tools.ElementUtils;
+import io.toolisticon.aptk.tools.MessagerUtils;
+import io.toolisticon.aptk.tools.TypeUtils;
+import io.toolisticon.spiap.api.SpiService;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -17,7 +17,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import java.lang.annotation.Annotation;
 
-@Service(value = AnnotationConstraintSpi.class)
+@SpiService(value = AnnotationConstraintSpi.class)
 public class MinLengthConstraintImpl implements AnnotationConstraintSpi {
 
     @Override
